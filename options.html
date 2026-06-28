@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Tab Manager Options</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <div class="brand">
+          <img src="assets/icons/icon48.png" alt="" class="brand-icon">
+          <div>
+            <h1>Smart Tab Manager</h1>
+            <p id="status">Options</p>
+          </div>
+        </div>
+      </header>
+
+      <form id="settingsForm" class="settings-grid">
+        <section class="panel">
+          <h2>Auto-close</h2>
+          <label class="switch-line">
+            <span>
+              <strong>Enable inactive tab handling</strong>
+              <small>Runs every five minutes</small>
+            </span>
+            <input id="autoCloseEnabled" type="checkbox">
+          </label>
+          <label class="field">
+            <span>Inactive threshold</span>
+            <select id="inactivityMinutes">
+              <option value="30">30 minutes</option>
+              <option value="60">1 hour</option>
+              <option value="120">2 hours</option>
+              <option value="240">4 hours</option>
+              <option value="480">8 hours</option>
+              <option value="1440">1 day</option>
+              <option value="4320">3 days</option>
+              <option value="10080">7 days</option>
+            </select>
+          </label>
+          <label class="switch-line">
+            <span>
+              <strong>Discard instead of close</strong>
+              <small>Frees memory while keeping the tab visible</small>
+            </span>
+            <input id="discardInsteadOfClose" type="checkbox">
+          </label>
+        </section>
+
+        <section class="panel">
+          <h2>Protection</h2>
+          <label class="switch-line">
+            <span><strong>Skip pinned tabs</strong></span>
+            <input id="skipPinned" type="checkbox">
+          </label>
+          <label class="switch-line">
+            <span><strong>Skip tabs playing audio</strong></span>
+            <input id="skipAudible" type="checkbox">
+          </label>
+          <label class="switch-line">
+            <span><strong>Skip grouped tabs</strong></span>
+            <input id="skipGrouped" type="checkbox">
+          </label>
+          <label class="switch-line">
+            <span><strong>Skip browser pages</strong></span>
+            <input id="skipInternalUrls" type="checkbox">
+          </label>
+        </section>
+
+        <section class="panel">
+          <h2>Sessions</h2>
+          <label class="field">
+            <span>Saved session limit</span>
+            <input id="maxSessions" type="number" min="1" max="100" step="1">
+          </label>
+          <div class="button-row">
+            <button id="exportButton" class="text-button muted" type="button">Export</button>
+            <label class="file-button">
+              Import
+              <input id="importFile" type="file" accept="application/json">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Actions</h2>
+          <div class="button-row">
+            <button class="text-button" type="submit">Save options</button>
+            <button id="runNowButton" class="text-button muted" type="button">Run auto-close</button>
+          </div>
+        </section>
+      </form>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Tab Manager</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <img src="assets/icons/icon32.png" alt="" class="brand-icon">
+          <div>
+            <h1>Smart Tab Manager</h1>
+            <p id="syncStatus">Ready</p>
+          </div>
+        </div>
+        <div class="icon-row">
+          <button id="refreshButton" class="icon-button" type="button" title="Refresh" aria-label="Refresh">↻</button>
+          <button id="optionsButton" class="icon-button" type="button" title="Options" aria-label="Options">⚙</button>
+        </div>
+      </header>
+
+      <section class="stats-grid" aria-label="Tab statistics">
+        <article class="stat-card accent-teal">
+          <strong id="totalTabs">--</strong>
+          <span>tabs</span>
+        </article>
+        <article class="stat-card accent-coral">
+          <strong id="duplicateTabs">--</strong>
+          <span>dupes</span>
+        </article>
+        <article class="stat-card accent-indigo">
+          <strong id="inactiveTabs">--</strong>
+          <span>inactive</span>
+        </article>
+        <article class="stat-card accent-amber">
+          <strong id="memoryUsed">--</strong>
+          <span>memory</span>
+        </article>
+      </section>
+
+      <section class="search-panel">
+        <label class="field-label" for="searchInput">Natural search</label>
+        <div class="search-row">
+          <input id="searchInput" type="search" autocomplete="off" placeholder='Try "github duplicates" or "heavy inactive 2 hours"'>
+          <button id="searchButton" class="icon-button filled" type="button" title="Search" aria-label="Search">⌕</button>
+        </div>
+        <div id="searchResults" class="result-list compact"></div>
+      </section>
+
+      <nav class="view-tabs" aria-label="Views">
+        <button class="view-tab active" type="button" data-view="overview">Overview</button>
+        <button class="view-tab" type="button" data-view="sessions">Sessions</button>
+        <button class="view-tab" type="button" data-view="automation">Auto-close</button>
+      </nav>
+
+      <section id="overviewView" class="view-panel active">
+        <div class="action-grid">
+          <button id="groupTabsButton" class="command-card" type="button">
+            <span class="command-icon">◎</span>
+            <span>
+              <strong>AI group</strong>
+              <small>Topic and domain clusters</small>
+            </span>
+          </button>
+          <button id="closeDuplicatesButton" class="command-card" type="button">
+            <span class="command-icon warn">×</span>
+            <span>
+              <strong>Clean dupes</strong>
+              <small>Keep active or pinned</small>
+            </span>
+          </button>
+        </div>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Duplicates</h2>
+            <span id="duplicateSummary" class="pill">--</span>
+          </div>
+          <div id="duplicateList" class="result-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Memory</h2>
+            <span id="memorySummary" class="pill">--</span>
+          </div>
+          <div class="meter" aria-hidden="true">
+            <span id="memoryMeter"></span>
+          </div>
+          <div id="memoryList" class="result-list"></div>
+        </section>
+      </section>
+
+      <section id="sessionsView" class="view-panel">
+        <form id="saveSessionForm" class="session-form">
+          <label class="field-label" for="sessionName">Save session</label>
+          <div class="search-row">
+            <input id="sessionName" type="text" maxlength="60" placeholder="Current workspace">
+            <button id="saveSessionButton" class="text-button" type="submit">Save</button>
+          </div>
+        </form>
+        <div id="sessionList" class="result-list"></div>
+      </section>
+
+      <section id="automationView" class="view-panel">
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Inactive tabs</h2>
+            <span id="autoCloseState" class="pill">--</span>
+          </div>
+          <div class="setting-line">
+            <span id="autoCloseThreshold">--</span>
+            <button id="runAutoCloseButton" class="text-button" type="button">Run now</button>
+          </div>
+          <div class="setting-line">
+            <span id="autoCloseBehavior">--</span>
+            <button id="openAutoOptionsButton" class="text-button muted" type="button">Edit</button>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
